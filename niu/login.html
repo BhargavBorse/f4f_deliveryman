@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Deliveryman-Log in</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.6 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css'>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+    
+    <link rel="stylesheet" href="css/login.css">
+    
+    
+</head>
+
+<body>
+    
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-2">
+            </div>
+            <div class="col-lg-6 col-md-8 login-box">
+                <!-- <div class="col-lg-12 login-key">
+                    <i class="fa fa-key" aria-hidden="true"></i>
+                </div> -->
+                <!-- <div class="col-lg-12 login-title">
+                    Freedom For Fashion
+                </div> -->
+                <!-- <i style="font-size:20pt;">Freedom For Fashion</i> -->
+                <div  class="col-lg-12 login-title">
+                    <!-- <br> -->
+                    Delivery Man 
+                </div>
+                
+                <div class="col-lg-12 login-form">
+                    <div id="login_div" class="col-lg-12 login-form">
+                        <!-- <form> -->
+                            <div class="form-group">
+                                <label class="form-control-label">EMAIL ID</label>
+                                <input type="text" id="email_field" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-control-label">PASSWORD</label>
+                                <input type="password" class="form-control" id="password_field" i>
+                            </div>
+                            
+                            <div class="col-lg-12 loginbttm">
+                                <div class="col-lg-4 login-btm login-button">
+                                    <!-- <button type="submit" class="btn btn-outline-primary">LOGIN</button> -->
+                                    <button onclick="forgot_password()" class="btn btn-outline-primary" style="float:left;">Forgot Password</button>
+                                    <!-- <button class="btn btn-outline-primary" onclick="login()">Login to Account</button> <br> -->
+                                </div>
+
+                                <div class="col-lg-4 login-btm login-text">
+                                    <!-- Error Message -->
+                                </div>
+                                
+                                <div class="col-lg-4 login-btm login-button">
+                                    <!-- <button type="submit" class="btn btn-outline-primary">LOGIN</button> -->
+                                    <!-- <a href="" class="btn-outline-primary" style="float:left;">Forgot Password</a> -->
+                                    <button class="btn btn-outline-primary" id="login" onclick="login()">Login to Account</button> <br>
+                                </div>
+                            </div>
+                            <!-- </form> -->
+                        </div>
+                        
+                        <!-- <div id="user_div" class="loggedin-div">
+                            <h3 style="color:white;">Welcome Admin</h3>
+                            <p id="user_para" style="color:white;">Welcome to Freedom for Fashion.</p>
+                            <button class="btn btn-outline-primary">Profile</button>
+                            <button onclick="logout()" class="btn btn-outline-primary">Logout</button>
+                            <br>
+                            <button id="verify_btn" onclick="send_verification()">Send Verification</button>
+                        </div> -->
+                    </div>
+                    <div class="col-lg-3 col-md-2"></div>
+                </div>
+            </div>
+            
+            
+            <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-app.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-auth.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-firestore.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-database.js"></script>
+            
+            <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase.js"></script>
+            <script>
+                // Initialize Firebase
+                var config = {
+                    apiKey: "AIzaSyBCXYBy-ry760TM9x-CEsLzIgoZJ3ucv4g",
+                    authDomain: "trial-c2b17.firebaseapp.com",
+                    databaseURL: "https://trial-c2b17.firebaseio.com",
+                    projectId: "trial-c2b17",
+                    storageBucket: "trial-c2b17.appspot.com",
+                    messagingSenderId: "181878503934"
+                };
+                firebase.initializeApp(config);
+            </script>
+            <script src="js_files/login.js"></script>
+        </body>
+        
+        </html>
+        
