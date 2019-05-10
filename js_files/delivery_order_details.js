@@ -5,13 +5,13 @@ firebase.auth().onAuthStateChanged(function(user) {
         // User is signed in.
         document.getElementById('man_name').innerHTML = user.email;
         document.getElementById('email_field').value = user.email;                
-
+        
         //   window.location = 'index.html';
         alert(user.email);
         var url_string = window.location.href;
         var url = new URL (url_string);
-        var Oid = url.searchParams.get('Oid');
-        var Did = url.searchParams.get('Did');     
+        var id = url.searchParams.get('id');
+        var uid = url.searchParams.get('uid');     
         
         
         var eventRef = firebase.database().ref();
@@ -27,43 +27,52 @@ firebase.auth().onAuthStateChanged(function(user) {
         var item_price;
         var order_type;
         
+        // alert(id.customer_name);
         
-        
-        eventRef.child('Delivery_Man_Details').child(Did).child('Order').child(Oid).on('value',function(dm_order_snapshot){
-            var dm_order = dm_order_snapshot.val();
-            // alert('sr');
-            // console.log(return_dm_order);
-            document.getElementById('customer_name').value = dm_order.customer_name;
-            document.getElementById('p_no').value = dm_order.customer_phone_no;
-            document.getElementById('address').value = dm_order.customer_address;
-            document.getElementById('pin_code').value = dm_order.customer_pincode;
-            document.getElementById('email').value = dm_order.customer_email;                                    
-            document.getElementById('item_name').value = dm_order.item_name;                                    
-            document.getElementById('delivery_date').value = dm_order.delivery_date;
-            document.getElementById('quantity').value = dm_order.item_quantity;
-            document.getElementById('price').value = dm_order.item_price;
-            document.getElementById('order_type').value = dm_order.order_type;
-            
-            
-            
-            customer_name = dm_order.customer_name;
-            customer_phone_no = dm_order.customer_phone_no;
-            customer_address = dm_order.customer_address;
-            customer_pincode = dm_order.customer_pincode;
-            customer_email = dm_order.customer_email;
-            item_name = dm_order.item_name;
-            delivery_date = dm_order.delivery_date;
-            item_quantity = dm_order.item_quantity;
-            item_price = dm_order.item_price;
-            order_type = dm_order.order_type;
-            
-            
-            
-            
-            
-            
+        firebase.database().ref().child('Admin').child('Order').on('value',function(user_uid_snapshot){
+            var user_uid = user_uid_snapshot.val();
+            var user_uid_keys = Object.keys(user_uid);
+            alert(user_uid_keys);
+            for(var i=0;i<user_uid_keys.length;i++)
+            {                 
+                
+                firebase.database().ref().child('Admin').child('Order').child(user_uid_keys[i]).child(id).on('value',function(dm_order_snapshot){
+                    var dm_order = dm_order_snapshot.val();
+                    // alert('sr');
+                    // console.log(return_dm_order);
+                    document.getElementById('customer_name').value = dm_order.customer_name;
+                    document.getElementById('p_no').value = dm_order.customer_phone_no;
+                    document.getElementById('address').value = dm_order.customer_address;
+                    document.getElementById('pin_code').value = dm_order.customer_pincode;
+                    document.getElementById('email').value = dm_order.customer_email;                                    
+                    document.getElementById('item_name').value = dm_order.item_name;                                    
+                    document.getElementById('delivery_date').value = dm_order.delivery_date;
+                    document.getElementById('quantity').value = dm_order.item_quantity;
+                    document.getElementById('price').value = dm_order.item_price;
+                    document.getElementById('order_type').value = dm_order.order_type;
+                    
+                    
+                    
+                    customer_name = dm_order.customer_name;
+                    customer_phone_no = dm_order.customer_phone_no;
+                    customer_address = dm_order.customer_address;
+                    customer_pincode = dm_order.customer_pincode;
+                    customer_email = dm_order.customer_email;
+                    item_name = dm_order.item_name;
+                    delivery_date = dm_order.delivery_date;
+                    item_quantity = dm_order.item_quantity;
+                    item_price = dm_order.item_price;
+                    order_type = dm_order.order_type;
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                });
+            }
         });
-        
         document.getElementById('update_order').onclick = function(){
             dbRef.on('value',function(user_ids_snapshot){
                 var user_ids = user_ids_snapshot.val();

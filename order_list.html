@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>F4F - Order Details</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <link rel="stylesheet" type="text/css" href="invoice/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="invoice/font-awesome/css/font-awesome.min.css" />
+    
+    <script type="text/javascript" src="invoice/js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="invoice/bootstrap/js/bootstrap.min.js"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    
+    
+    <!-- Owl-Carousel-CSS -->
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="all">
+    
+    <style>
+        body, html{
+            font-size: 11pt !important;
+        }
+        .height {
+            min-height: 200px;
+        }
+        
+        .icon {
+            font-size: 47px;
+            color: #5CB85C;
+        }
+        
+        .iconbig {
+            font-size: 77px;
+            color: #5CB85C;
+        }
+        
+        .table > tbody > tr > .emptyrow {
+            border-top: none;
+        }
+        
+        .table > thead > tr > .emptyrow {
+            border-bottom: none;
+        }
+        
+        .table > tbody > tr > .highrow {
+            border-top: 3px solid;
+        }
+        .des{
+            width: 15%;
+        }
+        @media screen and (max-width: 450px){
+            .des{
+                width: 47%;
+                margin: 1%;
+            }
+        }
+    </style>
+    
+    <script type="text/javascript">
+        function showfield(name){
+            if(name=='returned')document.getElementById('div1').innerHTML='Any Damage?  <select style="color:black" class="form-control" id="describe"><option value="damaged" id="damaged">Yes</option><option value="allok" id="allok">No</option></select> <br>';
+            else if(name=='delivered')document.getElementById('div1').innerHTML='Deposit Taken?  <select style="color:black" class="form-control" id="deposit_taken"><option value="taken" id="taken">Yes</option><option value="pending" id="pending">No</option></select> <br>';
+            
+            else document.getElementById('div1').innerHTML='';          
+        }
+    </script>
+    
+</head>
+<body>
+    
+    <div class="container">
+        
+        <div class="page-header">
+            <h1>Freedom For Fashion</h1>
+        </div>
+        
+        <!-- Simple Invoice - START -->
+        <div id="printableArea">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="text-center">
+                            <h2>Order Details</h2>                            
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-3 col-lg-3 pull-left">
+                                <div class="panel panel-default height">
+                                    <div class="panel-heading">Order Owner
+                                        <!-- <button type="button" style="float:right;" class="btn btn-primary fa fa-edit" onclick="back()" id="back"> -->
+                                        </div>
+                                        <div class="panel-body">
+                                            <strong id="name"></strong><br><br>
+                                            <strong id="pn_no"></strong><br><br>
+                                            <strong id="email"></strong><br><br>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-3 col-lg-3">
+                                    <div class="panel panel-default height">
+                                        <div class="panel-heading">Shipping Address
+                                            <!-- <button type="button" style="float:right;" class="btn btn-primary fa fa-edit" onclick="checkout()" id="checkout"> -->
+                                            </div>
+                                            <div class="panel-body">
+                                                <strong id="address"></strong><br>
+                                                <strong id="pin_code"></strong><br><br>
+                                                
+                                                <strong id="">Payment Type: </strong>Cash On Delivery<br><br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-3 col-lg-3 pull-left">
+                                        <div class="panel panel-default height">
+                                            <div class="panel-heading">Order Date & Timings
+                                                <!-- <button type="button" style="float:right;" class="btn btn-primary fa fa-edit" onclick="back_date()" id="back_date"> -->
+                                                </div>
+                                                <div class="panel-body">
+                                                    <strong>Delivery Date: </strong> <strong id="from_date"></strong><br>
+                                                    <strong>Delivery Time: </strong> <strong id="from_time"></strong><br>
+                                                    <strong>Return Date: </strong> <strong id="to_date"></strong><br>
+                                                    <strong>Return Time: </strong> <strong id="to_time"></strong><br>
+                                                    <strong>Total Days: </strong> <strong id="total_days"></strong><br><br>
+                                                    
+                                                    <!-- <strong>Order Status: </strong> <strong id="order_status"></strong><br> -->
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <strong>Delivery Date: </strong> <strong id="from_date"> </strong> <br>
+                                <strong>Return Date: </strong> <strong id="to_date"> </strong> <br>
+                                <strong>For: </strong> <strong id="total_days"></strong> <strong>Days</strong><br> -->
+                                <!-- <strong>Delivery Time: </strong> <strong id="d_time"></strong> <strong>Days</strong><br>
+                                    <strong>Return Time: </strong> <strong id="r_time"></strong> <strong>Days</strong><br><br> -->
+                                    <!-- <strong>Purchase Date: </strong> <strong id="date"></strong><br><br> -->
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h3 class="text-center"><strong>Order summary</strong></h3>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <div class="table-responsive">
+                                                        <table class="table" id="invoice_table">
+                                                            <thead>
+                                                                <tr>
+                                                                    <td><strong>Item Name</strong></td>
+                                                                    <td><strong>Item Price</strong></td>
+                                                                    <td><strong>Item Quantity</strong></td>
+                                                                    <td><strong>Rent Days</strong></td>
+                                                                    <td><strong>Total</strong></td>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <!-- <tr>
+                                                                    <td>Sherwani</td>
+                                                                    <td class="text-center">2000</td>
+                                                                    <td class="text-center">2</td>
+                                                                    <td class="text-right">4000</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Blazer</td>
+                                                                    <td class="text-center">1500</td>
+                                                                    <td class="text-center">2</td>
+                                                                    <td class="text-right">3000</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Kurta</td>
+                                                                    <td class="text-center">800</td>
+                                                                    <td class="text-center">3</td>
+                                                                    <td class="text-right">2400</td>
+                                                                </tr> -->
+                                                                
+                                                                <tr>
+                                                                    <td class="highrow"></td>
+                                                                    <td class="highrow"></td>
+                                                                    <td class="highrow"></td>
+                                                                    <td class="highrow"><strong>Subtotal</strong></td>
+                                                                    <td class="highrow" id="subtotal"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="emptyrow"></td>
+                                                                    <td class="emptyrow"></td>
+                                                                    <td class="emptyrow"></td>
+                                                                    <td class="emptyrow"><strong>GST(5%)</strong></td>
+                                                                    <td class="emptyrow" id="gst"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="emptyrow"></td>
+                                                                    <td class="emptyrow"></td>
+                                                                    <td class="emptyrow"></td>
+                                                                    <td class="emptyrow"><strong>Deposit</strong></td>
+                                                                    <td class="emptyrow" id="deposit"></td>
+                                                                </tr>
+                                                                <!-- <tr>
+                                                                    <td class="emptyrow"></td>
+                                                                    <td class="emptyrow"></td>
+                                                                    <td class="emptyrow"><strong>try</strong></td>
+                                                                    <td class="emptyrow" id="ggg"></td>
+                                                                </tr> -->
+                                                                <tr>
+                                                                    <td class="highrow"></td>
+                                                                    <td class="highrow"></td>
+                                                                    <td class="highrow"></td>
+                                                                    <td class="highrow"><strong>Total</strong></td>
+                                                                    <td class="highrow" id="final_total"></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <div class="form-group">
+                                                            <!-- <label for="exampleSelectGender">Order Status : <strong id="order_status"></strong></label>
+                                                            &nbsp;&nbsp;&nbsp;&nbsp;
+                                                            <label for="exampleSelectGender">Deposit : <strong id="deposit_status"> </strong></label>
+                                                            <br> -->
+                                                            <label for="exampleSelectGender">Change Order Status :</label>                                                            
+                                                            <select class="form-control" style="color:black" onchange="showfield(this.options[this.selectedIndex].value)" id="update_order">
+                                                                <option>---Select---</option>
+                                                                <!-- <option value="new_order">New Order</option> -->
+                                                                <option value="delivered" id="delivered">Delivered</option>
+                                                                <option value="returned" id="returned">Returned</option>
+                                                            </select>
+                                                        </div>
+                                                        <div id="div1"></div>
+                                                        <br>
+                                                        <input type="button" class="btn btn-primary form-control" id="update_status" onclick="update_status()" value="Update">
+                                                        <br>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 
+                                item name
+                                <input type="text" id="in_item_name" >
+                                item price
+                                <input type="text" id="in_item_price" >
+                                quantity
+                                <input type="text" id="in_item_quantity" >
+                                days
+                                <input type="text" id="in_item_days" >
+                                item subtotal
+                                <input type="text" id="in_item_total" >
+                                item gst
+                                <input type="text" id="in_item_gst" >
+                                item deposit
+                                <input type="text" id="in_item_deposit" >
+                                <br> -->
+                                
+                                <!-- NAME
+                                    <input type="text" id="user_name">
+                                    ADDRESS
+                                    <input type="text" id="address">
+                                    PINCODE
+                                    <input type="text" id="pincode">
+                                    PHONE
+                                    <input type="text" id="mobile_number">
+                                    EMAIL
+                                    <input type="text" id="email"> -->
+                                    
+                                    <input type="text" id="days" hidden>
+                                    <!-- <input type="text" id="db_total"> -->
+                                    
+                                    <!-- <input type="button" class="btn btn-primary des" onclick="back_to_order()" id="back_to_order" value="Back to Orders">
+                                        <input type="button" class="btn btn-primary des" onclick="cancel_order()" id="cancel_order" value="Cancel Order">                                    
+                                        <input type="button" class="btn btn-primary des" onclick="printDiv('printableArea')" value="Print Order">
+                                        <input type="button" class="btn btn-primary des" onclick="back_to_home()" id="back_to_home" value="Back to Home">                                    
+                                        <br><br> -->
+                                        
+                                        
+                                    </div>
+                                    
+                                    <footer>   
+                                        <!-- //footer-top -->
+                                        <div class="footer-bottomv2 py-5" style="background-color: black;">
+                                            <div class="container">                      
+                                                
+                                                <div class="cpy-right align-self-center">
+                                                    <h2 class="agile_btxt">
+                                                        <a href="index.html" style="color: white;">
+                                                            <span>F</span>reedom
+                                                            <span>f</span>or
+                                                            <span>F</span>ashion</a>
+                                                        </h2>
+                                                        <p style="float:right;">© 2019 Freedom for Fashion. All rights reserved 
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </footer>
+                                </body>
+                                
+                                <!-- <script>
+                                    document.getElementById('back_to_order').onclick = function(){
+                                        window.location.href = 'order-history.html';
+                                    }
+                                </script> -->
+                                <!-- <script>
+                                    document.getElementById('back').onclick = function(){
+                                        window.location.href = 'checkout.html';
+                                    }
+                                </script> -->
+                                <!-- <script>
+                                    document.getElementById('back_to_home').onclick = function(){
+                                        window.location.href = 'index.html';
+                                    }
+                                </script> -->
+                                <!-- <script>
+                                    function printDiv(divName) {
+                                        var printContents = document.getElementById(divName).innerHTML;
+                                        var originalContents = document.body.innerHTML;
+                                        
+                                        document.body.innerHTML = printContents;
+                                        
+                                        window.print();
+                                        
+                                        document.body.innerHTML = originalContents;
+                                    }
+                                </script> -->
+                                <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase.js"></script>
+                                <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-app.js"></script>
+                                <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-auth.js"></script>
+                                <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-firestore.js"></script>
+                                <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-database.js"></script>
+                                
+                                <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase.js"></script>
+                                <script>
+                                    // Initialize Firebase
+                                    var config = {
+                                        apiKey: "AIzaSyBCXYBy-ry760TM9x-CEsLzIgoZJ3ucv4g",
+                                        authDomain: "trial-c2b17.firebaseapp.com",
+                                        databaseURL: "https://trial-c2b17.firebaseio.com",
+                                        projectId: "trial-c2b17",
+                                        storageBucket: "trial-c2b17.appspot.com",
+                                        messagingSenderId: "181878503934"
+                                    };
+                                    firebase.initializeApp(config);
+                                </script>
+                                <script type="text/javascript" src="js_files/order_list.js"></script>
+                                </html>
